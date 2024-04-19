@@ -11,7 +11,7 @@ body {
 }
 
 .navbar {
-    background-color: #343a40;
+    background-color: #0152a3;
     color: #fff;
     padding: 10px 0;
 }
@@ -32,7 +32,11 @@ body {
 }
 
 .navbar .nav-item:hover::before {
-    background-color: #007bff;
+    background-color: #00ff5e;
+}
+
+.navbar .active::before {
+    background-color: #00ff5e;
 }
 
 .navbar .container {
