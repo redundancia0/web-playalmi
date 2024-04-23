@@ -1,6 +1,8 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const axios = require('axios');
+const bodyParser = require('body-parser');
 const app = express();
 
 app.use(session({
@@ -8,6 +10,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const checkSession = (req, res, next) => {
   if (!req.session.user) {
@@ -21,11 +27,35 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  req.session.user = 'usuario';
-  res.redirect('/');
+  let usuario = req.body.usuario;
+  let clave = req.body.clave;
+  const url = 'http://localhost:8080/api/usuarios/login/';
+  const data = {
+    nombre: usuario,
+    clave: clave
+  };
+
+  axios.post(url, data)
+    .then(response => {
+      console.log('Respuesta del servidor:', response.data);
+      if (response.data.message === 'Inicio de sesión exitoso') {
+        req.session.user = usuario;
+        res.redirect('/');
+      } else {
+        res.redirect("/login");
+      }
+    })
+    .catch(error => {
+      console.error('Error al hacer la solicitud:', error);
+      res.redirect("/login");
+    });
 });
 
-app.get('/', checkSession, (req, res) => {
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, 'html', 'register.html'));
+});
+
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'html', 'index.html'));
 });
 

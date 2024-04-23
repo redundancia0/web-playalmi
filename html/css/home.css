@@ -10,10 +10,17 @@
     justify-content: center;
     align-items: center;
     min-height: 70vh;
+    background-image: url('https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QW50aWd1YSUyMG5hdmUlMjBpbmR1c3RyaWFsfGVufDB8fDB8fHww');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #p-desc {
     text-align: center;
+    color: white;
+    font-size: 18px;
+
 }
 
 .button-container {
@@ -31,6 +38,7 @@
 #titulo {
     font-family: system-ui;
     font-size: 45px;
+    color: white;
 }
 
 .btn-download {

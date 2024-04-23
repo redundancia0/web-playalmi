@@ -68,3 +68,11 @@ body {
     text-decoration: none;
     font-size: 18px;
 }
+
+.footer {
+    margin-top: 100px;
+    background-color: #0152a3;
+    color: #fff;
+    padding: 3px;
+    text-align: center;
+}
