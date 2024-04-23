@@ -12,6 +12,26 @@
     min-height: 70vh;
 }
 
+#p-desc {
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    margin: 4px;
+}
+
+
+
+#titulo {
+    font-family: system-ui;
+    font-size: 45px;
+}
 
 .btn-download {
     display: inline-block;
