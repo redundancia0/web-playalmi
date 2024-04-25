@@ -90,34 +90,49 @@ app.post('/login', (req, res) => {
 app.post('/navbar', (req, res) => {
   if (req.session.user && req.body.pagina == 'home'){
     res.send(`<div class="container">
-        <a class="navbar-brand" href="/">FactorySurfer</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/leaderboard">Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
-            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-        </ul>
-    </div>`);
+    <a href="/" class="navbar-brand">FactorySurfer</a>
+    <ul class="navbar-nav">
+      <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+    <div id="reproductor">
+      <audio controls>
+          <source src="mp3/Guardians_of_Honor.mp3" type="audio/mpeg">
+          Tu navegador no soporta el elemento de audio.
+      </audio>
+  </div>`);
   } else if (req.session.user && req.body.pagina == 'leaderboard') {
     res.send(`<div class="container">
-      <a class="navbar-brand" href="/">FactorySurfer</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item active"><a class="nav-link" href="/leaderboard">Leaderboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
-            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-        </ul>
-    </div>`);
+    <a href="/" class="navbar-brand">FactorySurfer</a>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+      <li class="nav-item active"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+    <div id="reproductor">
+      <audio controls>
+          <source src="mp3/Guardians_of_Honor.mp3" type="audio/mpeg">
+          Tu navegador no soporta el elemento de audio.
+      </audio>
+  </div>`);
   } else if (req.session.user && req.body.pagina == 'perfil') {
     res.send(`<div class="container">
-      <a class="navbar-brand" href="/">FactorySurfer</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/leaderboard">Leaderboard</a></li>
-            <li class="nav-item active"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
-            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-        </ul>
-    </div>`);
+    <a href="/" class="navbar-brand">FactorySurfer</a>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
+      <li class="nav-item active"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+    <div id="reproductor">
+      <audio controls>
+          <source src="mp3/Guardians_of_Honor.mp3" type="audio/mpeg">
+          Tu navegador no soporta el elemento de audio.
+      </audio>
+  </div>`);
   }
   else {
     res.send(`invalido`)
@@ -135,7 +150,7 @@ app.get('/register', (req, res) => {
 app.post('/perfil', (req, res) => {
   let id_user = req.session.id_user;
   
-  axios.get(`http://localhost:8080/api/usuarios/findbyid/${id_user}`)
+  axios.get(`${ruta}/api/usuarios/findbyid/${id_user}`)
       .then(response => {
           console.log('Respuesta del servidor:', response.data);
           res.status(200).json(response.data);
@@ -186,7 +201,7 @@ app.post('/register', (req, res) => {
             userData.avatar = nombreArchivo;
             console.log(userData.avatar);
 
-            axios.post('http://localhost:8080/api/usuarios', userData)
+            axios.post(`${ruta}/api/usuarios`, userData)
                 .then(response => {
                     console.log('Respuesta del servidor:', response.data);
                     res.status(200).json({
@@ -207,7 +222,7 @@ app.post('/register', (req, res) => {
                 });
         });
     } else {
-        axios.post('http://localhost:8080/api/usuarios', userData)
+        axios.post(`${ruta}/api/usuarios`, userData)
             .then(response => {
                 console.log('Respuesta del servidor:', response.data);
                 res.status(200).json({
@@ -247,7 +262,7 @@ app.get('/logout', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'html')));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
