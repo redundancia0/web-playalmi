@@ -4,6 +4,10 @@
     padding: 0 20px;
 }
 
+.home-container p, .home-container h2, .home-container h3 {
+    color: white;
+}
+
 .center-container {
     display: flex;
     flex-direction: column;
@@ -22,6 +26,12 @@
     font-size: 23px;
     font-weight: bold;
     font-family: "ZCOOL KuaiLe", sans-serif;
+    src: url('../fonts/ZCOOLKuaiLe-Regular.ttf')
+}
+
+#img-avestruz {
+    height: 300px;
+    border-radius: 10px;
 }
 
 .button-container {

@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #071c33;
 }
 
 .container {
@@ -10,69 +11,81 @@ body {
     padding: 20px;
 }
 
+#reproductor-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.plyr--audio .plyr__controls {
+    background-color: #0000!important;
+
+}
 .navbar {
-    background-color: #081e35;
+    background-color: #061423;
     color: #fff;
     padding: 10px 0;
-}
-
-.navbar .nav-item {
     position: relative;
-}
+  }
 
-.navbar .nav-item::before {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-}
-
-.navbar .nav-item:hover::before {
-    background-color: #00ff5e;
-}
-
-.navbar .active::before {
-    background-color: #00ff5e;
-}
-
-.navbar .container {
+  .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+    position: relative;
+  }
 
-.navbar .navbar-brand {
+  .navbar .navbar-brand {
     color: #fff;
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
-}
+  }
 
-.navbar .navbar-nav {
+  .navbar .navbar-nav {
     list-style: none;
-    margin: 0;
+/*     margin: 0; */
     padding: 0;
-}
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+  }
 
-.navbar .nav-item {
-    display: inline-block;
+  .navbar .nav-item {
     margin-left: 20px;
-}
+    position: relative;
+  }
 
-.navbar .nav-link {
+  .navbar .nav-link {
     color: #fff;
     text-decoration: none;
     font-size: 18px;
+  }
+
+  .navbar .nav-item:hover::before, .navbar .active::before {
+    background-color: #00ff5e;
 }
+
+
+  #reproductor-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 
 .footer {
     margin-top: 100px;
-    background-color: #081e35;
+    background-color: #061423;
     color: #fff;
     padding: 3px;
     text-align: center;
+}
+
+
+
+@font-face {
+    font-family: 'ZCOOL KuaiLe';
+    src: url('../fonts/ZCOOLKuaiLe-Regular.ttf') format('truetype');
 }

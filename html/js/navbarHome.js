@@ -8,6 +8,7 @@ $(document).ready(function() {
         if (response !== "invalido") {
           console.log("ha cargado");
           $('nav').html(response);
+          $('.btn-join').remove();
         }
       },
       error: function(xhr, status, error) {
