@@ -9,8 +9,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
-    background-image: url('https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QW50aWd1YSUyMG5hdmUlMjBpbmR1c3RyaWFsfGVufDB8fDB8fHww');
+    min-height: 80vh;
+    background-image: url('/img/fondo.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,8 +19,9 @@
 #p-desc {
     text-align: center;
     color: white;
-    font-size: 18px;
-
+    font-size: 23px;
+    font-weight: bold;
+    font-family: "ZCOOL KuaiLe", sans-serif;
 }
 
 .button-container {
@@ -33,12 +34,10 @@
     margin: 4px;
 }
 
-
-
 #titulo {
-    font-family: system-ui;
-    font-size: 45px;
-    color: white;
+    font-family: "ZCOOL KuaiLe", sans-serif;
+    font-size: 65px;
+    color: rgb(1, 202, 189);
 }
 
 .btn-download {
@@ -51,14 +50,14 @@
     text-decoration: none;
     border: 1px solid transparent;
     border-radius: 0.25rem;
-    background-color: #007bff;
+    background-color: #d50000;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .btn-download:hover {
-    background-color: #0056b3;
+    background-color: #870000;
 }
 
 .btn-download:focus {
@@ -76,14 +75,14 @@
     text-decoration: none;
     border: 1px solid transparent;
     border-radius: 0.25rem;
-    background-color: #137100;
+    background-color: #000000;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .btn-join:hover {
-    background-color: #137100;
+    background-color: #1c1c1c;
 }
 
 
