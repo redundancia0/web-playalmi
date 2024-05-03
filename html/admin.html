@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactorySurfer | Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+<!--     <link rel="stylesheet" href="css/leaderboard.css"> -->
+    <link rel="stylesheet" href="css/plyr.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="navbar-brand">FactorySurfer</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
+                <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+            </ul>
+            <div id="reproductor">
+                <audio controls>
+                    <source src="mp3/Guardians_of_Honor.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+        </div>
+    </nav>
+    <div id="edit-user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 id="modal-h2">Edit User</h2>
+                <form id="edit-user-form">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" disabled><br>
+                <label for="coins">Coins:</label><br>
+                <input type="text" id="coins" name="coins"><br>
+                <label for="score">Score:</label><br>
+                <input type="text" id="score" name="score"><br>
+                <button type="button" id="save-changes-btn" class="btn-save">Save changes</button>
+                <button type="button" id="save-changes-btn" class="btn-cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container user-container">
+        <h3 class="h3-leaderboard">List of Users</h3>
+        <table class="user-table">
+            <tbody class="users-table">
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="footer">
+        <div class="home-container">
+            <p>&copy; 2024 FactorySurfer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/libs/jquery-3.7.1.min.js"></script>
+    <script src="/js/navbars/navbarLeaderboard.js"></script>
+    <script src="/js/navbars/navbarMovil.js"></script>
+    <script src="/js/loaders/cargarUsuariosAdmin.js"></script>
+    <script src="/js/libs/plyr.js"></script>
+    <script src="/js/others/audio.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

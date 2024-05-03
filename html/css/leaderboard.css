@@ -1,6 +1,7 @@
 
 .h3-leaderboard {
     text-align: center;
+    color: white;
     font-size: 40px;
 }
 
@@ -42,7 +43,7 @@
 
 
 .leaderboard-container {
-    background-color: #f8f9fa;
+    background-color: #061423;
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;

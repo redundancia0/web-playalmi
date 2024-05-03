@@ -7,13 +7,14 @@
     margin: 120px auto 0;
     padding: 20px;
     border-radius: 10px;
-    background-color: #f8f9fa;
+    background-color: #061423;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .h2-registro {
     text-align: center;
     font-size: 30px;
+    color: white;
 }
 
 .form-group {
@@ -22,6 +23,15 @@
 
 .form-group label {
     font-weight: bold;
+    color: white;
+}
+
+.form-group input {
+    color: black;
+}
+
+input[type="file" i] {
+    color: white;
 }
 
 .form-control {

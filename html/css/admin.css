@@ -1,0 +1,152 @@
+.user-table {
+    color: white;
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+.user-table th {
+    background-color: #061423;
+}
+
+.h3-leaderboard {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-edit {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    background-color: #004a01;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remove {
+    display: inline-block;
+    padding: 0.5rem 0.6rem;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    background-color: #d50000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal-h2 {
+    text-align: center;
+    color: white;
+}
+.modal-body {
+  padding: 20px;
+}
+
+.modal-content label {
+  color: #ffffff; 
+  margin-bottom: 10px;
+}
+
+.modal-content input[type="text"],
+.modal-content select {
+  width: calc(300px - 70px)!important;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.modal-content select:disabled {
+  background-color: #f4f4f4!important;
+  color: #777;
+}
+
+
+.modal-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #071c33;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  border-radius: 10px;
+}
+
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  border-top: 1px solid #888;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.btn-close,
+.btn-save, .btn-cancel {
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.btn-close {
+  background-color: #ccc;
+  border: none;
+}
+
+.btn-save {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+}
+
+.btn-cancel {
+  background-color: #f92100;
+  border: none;
+  color: #fff;
+}
+
+.btn-save:hover {
+  background-color: #0056b3;
+}
+
+.modal-content .input-wrapper {
+  width: 100%;
+}

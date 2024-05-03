@@ -6,16 +6,18 @@
     <title>FactorySurfer | Home</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!--     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css">
+    <link rel="stylesheet" href="css/plyr.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-          <a href="/" class="navbar-brand">FactorySurfer</a>
-          <ul class="navbar-nav">
+            <a href="/" class="navbar-brand">FactorySurfer</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>          
+          <ul class="navbar-nav" id="navbarMenu">
             <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
             <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
@@ -26,9 +28,9 @@
                 <source src="mp3/Guardians_of_Honor.mp3" type="audio/mpeg">
                 Tu navegador no soporta el elemento de audio.
             </audio>
+          </div>
         </div>
-      </nav>
-    </div>
+    </nav>
 
     <div class="center-container">
         <header class="hero">
@@ -36,7 +38,7 @@
                 <h1 id="titulo">FACTORY SURFER</h1>
                 <p id="p-desc">The best endless runner game in 2D</p>
                 <div class="button-container">
-                    <a href="register.html" class="btn btn-join">
+                    <a href="/register" class="btn btn-join">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
                             <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                             <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
@@ -69,8 +71,8 @@
                 <p>Check your ranking on our leaderboard and climb to the top.</p>
             </div>
             <div class="feature">
-                <img src="/img/foto1.png" alt="Feature 1">
-                <h3>Customizable Avatars</h3>
+<!--                 <img src="/img/foto1.png" alt="Feature 1">
+ -->                <h3>Customizable Avatars</h3>
                 <p>Personalize your avatar to stand out from the crowd.</p>
             </div>
         </div>
@@ -89,9 +91,10 @@
             <p>&copy; 2024 FactorySurfer. All rights reserved.</p>
         </div>
     </footer>
-    <script src="/js/jquery-3.7.1.min.js"></script>
-    <script src="/js/plyr.js"></script>
-    <script src="/js/navbarHome.js"></script>
-    <script src="/js/audio.js"></script>
+    <script async src="/js/libs/plyr.js"></script>
+    <script async src="/js/others/audio.js"></script>
+    <script async src="/js/libs/jquery-3.7.1.min.js"></script>
+    <script async src="/js/navbars/navbarHome.js"></script>
+    <script async src="/js/navbars/navbarMovil.js"></script>
 </body>
 </html>
