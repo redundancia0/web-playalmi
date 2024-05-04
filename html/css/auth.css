@@ -1,0 +1,65 @@
+.container-registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 120px auto 0;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #061423;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.h2-registro {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: white;
+}
+
+.form-group input {
+    color: black;
+}
+
+input[type="file" i] {
+    color: white;
+}
+
+.form-control {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.btn-container {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 200px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
