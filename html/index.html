@@ -6,7 +6,7 @@
     <title>FactorySurfer | Home</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/plyr.css">
+    <link rel="stylesheet" href="css/libs/bootstrap-icons.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -45,7 +45,7 @@
                         </svg>
                         Join Now
                     </a>
-                    <a href="" class="btn btn-download">
+                    <a href="/downloads/FactorySurfer.zip" class="btn btn-download">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-arrow-down-fill" viewBox="0 0 16 16">
                             <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708"/>
                         </svg>
@@ -56,32 +56,66 @@
         </header>
     </div>
 
-
+    <section class="about">
+        <div class="home-container">
+            <h2><i class="bi bi-patch-question-fill"></i> About Us</h2>
+            <div class="feature">
+                <h3><i class="bi bi-clock-history"></i> Storyline</h3>
+                <p>The story takes place on Titan, a faraway planet. Players dive into a big battle between good and bad. They play as Tiny Fang, a brave superhero with amazing powers. Tiny Fang has to go on a risky mission to stop The Largest Blade, a strong villain. The bad guy wants to ruin Tiny Fang's plans and cause trouble in the world. Earth's future is at risk, so players have to help Tiny Fang escape from The Largest Blade. They must finish their mission, no matter what.</p>
+            </div>
+            <div class="feature">
+                <h3><i class="bi bi-card-text"></i> Description</h3>
+                <p>In "Tiny Fang's Mission," players become a superhero named Tiny Fang. He's on a secret mission to save the world on Titan, a planet far away. But there's a problem! A bad guy called The Largest Blade finds out and tries to stop Tiny Fang.</p>
+                <p>His important job is to save Earth from being destroyed. Players help Tiny Fang escape from The Largest Blade. It's an exciting adventure full of hiding and using skills.</p>
+            </div>
+            <img src="/img/avestruz.jpg" id="img-avestruz" alt="Feature 1">
+        </div>
+    </section>
 
     <section class="features">
         <div class="home-container">
-            <h2>Why FactorySurfer?</h2>
-            <div class="feature">
-                <h3>Compete with Friends</h3>
+            <h2>Game Features</h2>
+<!--             <div class="feature">
+                <h3><i class="bi bi-diagram-2-fill"></i> Compete with Friends</h3>
                 <p>Challenge your friends and see who's the best.</p>
-            </div>
+            </div> -->
             <div class="feature">
-                <img src="/img/avestruz.jpg" id="img-avestruz" alt="Feature 1">
-                <h3>Leaderboard</h3>
+                <h3><i class="bi bi-person-lines-fill"></i> Leaderboard</h3>
                 <p>Check your ranking on our leaderboard and climb to the top.</p>
             </div>
             <div class="feature">
-<!--                 <img src="/img/foto1.png" alt="Feature 1">
- -->                <h3>Customizable Avatars</h3>
-                <p>Personalize your avatar to stand out from the crowd.</p>
+            <h3><i class="bi bi-person-square"></i> Skin Inventory</h3>
+                <p>You can choose between 3 different skins: armor, tank or bird.</p>
+                <img src="/img/store.png" id="img-tienda" alt="Feature 1">
             </div>
         </div>
     </section>
 
-    <section class="about">
+    <section class="features">
         <div class="home-container">
-            <h2>About Us</h2>
-            <p>FactorySurfer is a gaming platform designed to bring players together in friendly competition. Whether you're a casual gamer or a hardcore enthusiast, there's something for everyone here. Join our community today and start playing!</p>
+            <h2>PC Specs</h2>
+            <div class="feature">
+                <p style="color: white; margin-bottom: 1px;  font-weight: bold"><i class="bi bi-windows"></i> Operating System: </p>
+                <p>
+                    Windows 10 (64-bit)<br>
+<!--                     macOS 10.14 Mojave<br>
+                    Ubuntu 18.04 LTS<br> -->
+                </p>
+                <p style="color: white; margin-bottom: 1px;  font-weight: bold"><i class="bi bi-cpu"></i> Processor (CPU):</p>
+                <p> Intel Core i5-2400 @ 3.1GHz or equivalent</p>
+                <p style="color: white; margin-bottom: 1px;  font-weight: bold"><i class="bi bi-memory"></i> Memory (RAM): </p>
+                    
+                <p> 8 GB DDR3/DDR4</p>
+                
+                <p style="color: white; margin-bottom: 1px;  font-weight: bold"><i class="bi bi-gpu-card"></i> Graphics Card (GPU): </p>
+                    
+                <p>NVIDIA GeForce GTX 660 or AMD Radeon HD 7870 (2GB VRAM)</p>
+                <p style="color: white; margin-bottom: 1px;  font-weight: bold"><i class="bi bi-plugin"></i> DirectX:</p>
+                <p>Version 11</p> 
+                
+                <p style="color: white; margin-bottom: 1px;  font-weight: bold"><i class="bi bi-hdd"></i> Hard Disk Space:</p>
+                <p>2 GB available space</p>
+            </div>
         </div>
     </section>
 
@@ -91,8 +125,6 @@
             <p>&copy; 2024 FactorySurfer. All rights reserved.</p>
         </div>
     </footer>
-    <script async src="/js/libs/plyr.js"></script>
-    <script async src="/js/others/audio.js"></script>
     <script async src="/js/libs/jquery-3.7.1.min.js"></script>
     <script async src="/js/navbars/navbarHome.js"></script>
     <script async src="/js/navbars/navbarMovil.js"></script>

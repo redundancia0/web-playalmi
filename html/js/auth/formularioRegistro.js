@@ -14,7 +14,27 @@ $(document).ready(function() {
             btnRegister.fadeOut();
         }
     }
-    
+
+    function validarEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function checkEmailFormat() {
+        var email = emailInput.val().trim();
+        if (email !== '') {
+            if (!validarEmail(email)) {
+                passwordMessage.text("Invalid email format").css('color', 'red');
+                btnRegister.prop('disabled', true);
+            } else {
+                passwordMessage.text("");
+                btnRegister.prop('disabled', false);
+            }
+        } else {
+            passwordMessage.text("");
+        }
+    }
+
     function checkPasswordMatch() {
         var password = passwordInput.val().trim();
         var confirmPassword = confirmPasswordInput.val().trim();
@@ -32,7 +52,10 @@ $(document).ready(function() {
     }
     
     usernameInput.on('input', checkCamposRellenados);
-    emailInput.on('input', checkCamposRellenados);
+    emailInput.on('input', function() {
+        checkCamposRellenados();
+        checkEmailFormat();
+    });
     passwordInput.on('input', function() {
         checkCamposRellenados();
         checkPasswordMatch();
@@ -43,10 +66,36 @@ $(document).ready(function() {
     });
     
     $('form').submit(function(event) {
-        if (passwordInput.val().trim() !== confirmPasswordInput.val().trim()) {
-            event.preventDefault();
-            passwordMessage.text("Passwords don't match").css('color', 'red');
-            btnRegister.prop('disabled', true);
-        }
+        event.preventDefault();
+        
+        var username = $('#username').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var confirm_password = $('#confirm_password').val();
+        
+        $.ajax({
+            type: 'POST',
+            url: '/register',
+            data: {
+                username: username,
+                email: email,
+                password: password,
+                confirm_password: confirm_password
+            },
+            success: function(response){
+                if (response.message == "User registered successfully"){
+                    window.location.replace('/login')
+                }
+            },
+            error: function(xhr, status, error){
+                console.error(xhr.responseText);
+                var errorMessage = JSON.parse(xhr.responseText).message;
+                if (errorMessage == "El nombre de usuario o el correo electrónico ya están en uso"){
+                    passwordMessage.text("Email address or username is in use!").css('color', 'red');
+                } else{
+                    passwordMessage.text(errorMessage).css('color', 'red');
+                }
+            }
+        });
     });
 });

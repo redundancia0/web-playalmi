@@ -1,3 +1,6 @@
+/* #h3-perfil {
+    margin-top: 100px!important;
+} */
 
 .h3-leaderboard {
     text-align: center;
@@ -8,6 +11,11 @@
 .leaderboard-item:hover {
     background-color: #f1f1f1;
     transition: background-color 0.3s ease;
+}
+
+.leaderboard-container{
+    margin-bottom: 20px;
+/*     margin-top: 100px; */
 }
 
 .leaderboard {
@@ -41,12 +49,17 @@
     border-radius: 5px;
 }
 
+.container-leaderboard {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
 
 .leaderboard-container {
     background-color: #061423;
     border-radius: 10px;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 100px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

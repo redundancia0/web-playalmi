@@ -3,6 +3,7 @@
 }
 
 #h3-perfil {
+    margin-top: 110px;
     text-align: center;
     font-size: 40px;
 }
@@ -11,7 +12,22 @@
     font-size: 18px;
 
 }
+.profile-section {
+    margin-top: 100px;
+
+}
 
 .leaderboard-container {
     color: white;
+    margin-bottom: 248px;
+}
+
+@media (max-width: 431px) {
+    #h3-perfil {
+        margin-top: 60px;
+    }
+
+    .footer {
+        margin-top: 44px;
+    }
 }

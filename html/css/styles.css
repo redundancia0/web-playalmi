@@ -39,10 +39,6 @@ a:-webkit-any-link {
     transform: translateX(-50%);
 }
 
-.plyr--audio .plyr__controls {
-    background-color: #0000!important;
-}
-
 
 .navbar .nav-item:hover::before, .navbar .active::before {
   background-color: #00ff5e;
@@ -58,12 +54,15 @@ a:-webkit-any-link {
 
 
 .footer {
-    margin-top: 100px;
-    background-color: #061423;
-    color: #fff;
-    padding: 3px;
-    text-align: center;
+  background-color: #061423;
+  color: #fff;
+  padding: 3px;
+  text-align: center;
+  position: relative; /* Cambio a posición relativa */
+  margin-top: auto; /* Margen superior automático para empujar el footer hacia abajo */
 }
+
+
 
 @font-face {
     font-family: 'ZCOOL KuaiLe';
@@ -103,9 +102,6 @@ a:-webkit-any-link {
 }
 
 @media (max-width: 1150px) {
-  .plyr.plyr--full-ui.plyr--audio.plyr--html5.plyr--paused.plyr--stopped.plyr--is-touch {
-      display: none;
-  }
   #reproductor {
     display: none;
   }

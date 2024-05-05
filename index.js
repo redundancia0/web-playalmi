@@ -255,91 +255,60 @@ app.post('/topUsuarios', (req, res) => {
 
 
 app.post('/register', (req, res) => {
-    const { username, email, password, confirm_password } = req.body;
-    const avatar = req.file;
+  const { username, email, password, confirm_password } = req.body;
 
-    let avatarValue = "-";
-    if (avatar) {
-        avatarValue = avatar.originalname;
-    }
+  const userData = {
+      nombre: username,
+      clave: password,
+      correo: email,
+      monedas: 0,
+      avatar: '-',
+      rango: 0,
+      puntuacion: 0
+  };
 
-    const userData = {
-        nombre: username,
-        clave: password,
-        correo: email,
-        monedas: 0,
-        avatar: avatarValue,
-        rango: 0,
-        puntuacion: 0
-    };
-
-    if (avatar) {
-        const nombreArchivo = username + '_' + Date.now() + path.extname(avatar.originalname);
-        const rutaArchivo = './uploads/' + nombreArchivo;
-
-        fs.writeFile(rutaArchivo, avatar.buffer, (err) => {
-            if (err) {
-                console.error('Error al guardar el avatar:', err);
-                return res.status(500).json({
-                    message: "Error while trying to register user",
-                    username: username,
-                    email: email,
-                    avatar: "No avatar uploaded"
-                });
-            }
-
-            userData.avatar = nombreArchivo;
-            console.log(userData.avatar);
-
-            axios.post(`${ruta}/api/usuarios`, userData)
-                .then(response => {
-                    console.log('Respuesta del servidor:', response.data);
-                    res.redirect('/login');
-/*                     res.status(200).json({
-                        message: "User registered successfully",
-                        username: username,
-                        email: email,
-                        avatar: avatar.originalname
-                    }); */
-                })
-                .catch(error => {
-                    console.error('Error al hacer la petición POST:', error);
-                    res.status(500).json({
-                        message: "Error while trying to register user",
-                        username: username,
-                        email: email,
-                        avatar: avatar.originalname
-                    });
-                });
-        });
-    } else {
-        axios.post(`${ruta}/api/usuarios`, userData)
-            .then(response => {
-                console.log('Respuesta del servidor:', response.data);
-                res.redirect('/login');
-/*                 res.status(200).json({
-                    message: "User registered successfully",
-                    username: username,
-                    email: email,
-                    avatar: "No avatar uploaded"
-                }); */
-            })
-            .catch(error => {
-                console.error('Error al hacer la petición POST:', error);
-                res.status(500).json({
-                    message: "Error while trying to register user",
-                    username: username,
-                    email: email,
-                    avatar: "No avatar uploaded"
-                });
-            });
-    }
+  axios.post(`${ruta}/api/usuarios`, userData)
+          .then(response => {
+              console.log('Respuesta del servidor:', response.data);
+              res.status(200).json({
+                  message: "User registered successfully",
+                  username: username,
+                  email: email,
+                  avatar: "No avatar uploaded"
+              });
+          })
+          .catch(error => {
+              if (error.response) {
+                  console.error('Error en la petición POST:', error.response.data);
+                  res.status(error.response.status).json({
+                      message: `${error.response.data.message}`,
+                      username: username,
+                      email: email,
+                      avatar: "No avatar uploaded"
+                  });
+              } else if (error.request) {
+                  console.error('No se recibió respuesta del servidor:', error.request);
+                  res.status(500).json({
+                      message: "No se pudo completar la solicitud",
+                      username: username,
+                      email: email,
+                      avatar: "No avatar uploaded"
+                  });
+              } else {
+                  console.error('Error inesperado:', error.message);
+                  res.status(500).json({
+                      message: "Error inesperado al procesar la solicitud",
+                      username: username,
+                      email: email,
+                      avatar: "No avatar uploaded"
+                  });
+              }
+          });
 });
 
 app.post('/removeUser', (req, res) => {
   const { idUsuario } = req.body;
 
-  // Validate incoming data
   if (!idUsuario) {
     return res.status(400).json({
       message: "Missing required fields"
