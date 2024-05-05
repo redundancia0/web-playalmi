@@ -1,4 +1,10 @@
 .container-registro {
-    margin-top: 10%;
-    margin-bottom: 13%!important;
+    margin-top: 200px;
+    margin-bottom: 17%!important;
+}
+
+@media (max-width: 431px) {
+    .footer {
+        margin-top: 320px;
+    }
 }

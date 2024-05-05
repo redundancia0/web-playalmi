@@ -128,6 +128,15 @@ function navAdminLi(req){
   }
 }
 
+function navAdminLiActive(req){
+  console.log(req.session.rank)
+  if (req.session.rank == 1){
+    return `<li class="nav-item active"><a class="nav-link" href="/admin">Admin</a></li>`;
+  } else{
+    return '';
+  }
+}
+
 app.post('/userList', checkSessionAdmin, (req, res) => {
   axios.get(`${ruta}/api/usuarios/`)
   .then(response => {
@@ -200,6 +209,28 @@ app.post('/navbar', (req, res) => {
     <li class="nav-item"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
     <li class="nav-item active"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
     ${navAdminLi(req)}
+    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+  </ul>
+  <div id="reproductor">
+    <audio controls>
+        <source src="mp3/Guardians_of_Honor.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+</div>`);
+  } else if (req.session.user && req.body.pagina == 'admin') {
+    res.send(`<div class="container">
+    <a href="/" class="navbar-brand">FactorySurfer</a>
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>          
+  <ul class="navbar-nav" id="navbarMenu">
+    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+    <li class="nav-item"><a href="/leaderboard" class="nav-link">Leaderboard</a></li>
+    <li class="nav-item"><a class="nav-link" href="/perfil">${req.session.user}</a></li>
+    ${navAdminLiActive(req)}
     <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
   </ul>
   <div id="reproductor">
@@ -326,20 +357,17 @@ app.post('/removeUser', (req, res) => {
     .catch(error => {
       console.error('Error while making DELETE request:', error);
       if (error.response) {
-        // The request was made and the server responded with a status code
         res.status(error.response.status).json({
           message: "Error removing user data",
           error: error.response.data,
           userId: idUsuario,
         });
       } else if (error.request) {
-        // The request was made but no response was received
         res.status(500).json({
           message: "No response received from server",
           userId: idUsuario,
         });
       } else {
-        // Something happened in setting up the request that triggered an Error
         res.status(500).json({
           message: "Error setting up request",
           error: error.message,
@@ -352,7 +380,6 @@ app.post('/removeUser', (req, res) => {
 app.post('/updateUser', (req, res) => {
   const { monedas, puntuacion, idUsuario } = req.body;
 
-  // Validate incoming data
   if (!monedas || !puntuacion || !idUsuario) {
     return res.status(400).json({
       message: "Missing required fields"
@@ -375,20 +402,17 @@ app.post('/updateUser', (req, res) => {
     .catch(error => {
       console.error('Error while making PUT request:', error);
       if (error.response) {
-        // The request was made and the server responded with a status code
         res.status(error.response.status).json({
           message: "Error updating user data",
           error: error.response.data,
           userId: idUsuario,
         });
       } else if (error.request) {
-        // The request was made but no response was received
         res.status(500).json({
           message: "No response received from server",
           userId: idUsuario,
         });
       } else {
-        // Something happened in setting up the request that triggered an Error
         res.status(500).json({
           message: "Error setting up request",
           error: error.message,
