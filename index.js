@@ -291,7 +291,7 @@ app.post('/register', (req, res) => {
       clave: password,
       correo: email,
       monedas: 0,
-      avatar: avatar, // Utiliza avatarValue en lugar de avatar
+      avatar: avatar,
       rango: 0,
       puntuacion: 0
   };
@@ -303,7 +303,7 @@ app.post('/register', (req, res) => {
               message: "User registered successfully",
               username: username,
               email: email,
-              avatar: avatar // Devuelve el valor del avatar seleccionado
+              avatar: avatar
           });
       })
       .catch(error => {
@@ -313,7 +313,7 @@ app.post('/register', (req, res) => {
                   message: `${error.response.data.message}`,
                   username: username,
                   email: email,
-                  avatar: avatar // Devuelve el valor del avatar seleccionado
+                  avatar: avatar
               });
           } else if (error.request) {
               console.error('No se recibió respuesta del servidor:', error.request);
@@ -321,7 +321,7 @@ app.post('/register', (req, res) => {
                   message: "No se pudo completar la solicitud",
                   username: username,
                   email: email,
-                  avatar: avatar // Devuelve el valor del avatar seleccionado
+                  avatar: avatar
               });
           } else {
               console.error('Error inesperado:', error.message);
@@ -329,7 +329,7 @@ app.post('/register', (req, res) => {
                   message: "Error inesperado al procesar la solicitud",
                   username: username,
                   email: email,
-                  avatar: avatar // Devuelve el valor del avatar seleccionado
+                  avatar: avatar
               });
           }
       });
@@ -389,6 +389,60 @@ app.post('/updateUser', (req, res) => {
   const userData = {
     monedas: monedas,
     puntuacion: puntuacion
+  };
+
+  axios.put(`${ruta}/api/usuarios/findbyid/${idUsuario}`, userData)
+    .then(response => {
+      console.log('Server response:', response.data);
+      res.status(200).json({
+        message: "User data updated successfully",
+        userId: idUsuario,
+      });
+    })
+    .catch(error => {
+      console.error('Error while making PUT request:', error);
+      if (error.response) {
+        res.status(error.response.status).json({
+          message: "Error updating user data",
+          error: error.response.data,
+          userId: idUsuario,
+        });
+      } else if (error.request) {
+        res.status(500).json({
+          message: "No response received from server",
+          userId: idUsuario,
+        });
+      } else {
+        res.status(500).json({
+          message: "Error setting up request",
+          error: error.message,
+          userId: idUsuario,
+        });
+      }
+    });
+});
+
+app.post('/updateUserAvatar', (req, res) => {
+  const { avatar, idUsuario } = req.body;
+
+  if (!avatar || !idUsuario) {
+    return res.status(400).json({
+      message: "Missing required fields"
+    });
+  }
+
+  let avatarRuta;
+
+  if (avatar == 1){
+    avatarRuta = `${ruta}/img/avatar/1.png`;
+  } else if (avatar == 2){
+    avatarRuta = `${ruta}/img/avatar/2.png`;
+  } else if (avatar == 3){
+    avatarRuta = `${ruta}/img/avatar/3.png`;
+  }
+
+  const userData = {
+    avatar: avatarRuta,
   };
 
   axios.put(`${ruta}/api/usuarios/findbyid/${idUsuario}`, userData)

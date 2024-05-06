@@ -4,6 +4,8 @@ $(document).ready(function() {
         type: 'POST',
         success: function(response) {
             console.log('Éxito:', response);
+            console.log(response.data._id)
+            $('#profile-idUser').text(response.data._id);
             $('#profile-name').text(response.data.nombre);
             $('#profile-email').text(response.data.correo);
             $('#profile-rank').text(parsearRango(response.data.rango));
