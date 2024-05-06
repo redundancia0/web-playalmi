@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     $.ajax({
         url: '/perfil',
         type: 'POST',
@@ -12,7 +13,9 @@ $(document).ready(function() {
             console.error('Error:', error);
         }
     });
+
 });
+
 
 function parsearRango(id_rango) {
     if (id_rango == 0) {

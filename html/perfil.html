@@ -33,6 +33,25 @@
             <p id="p-rango"><i class="bi bi-coin"></i> Coins: <span id="profile-coins"></span> </p>
             <p id="p-rango"><i class="bi bi-calendar-event"></i> Created: <span id="profile-created"></span> </p>
         </div>
+
+        <div class="change-avatar">
+            <h3 id="titulo-last5">Change avatar</h4>
+            <div class="avatar-options">
+                <label class="avatar-option">
+                    <input id="avatar" type="radio" name="avatar" value="1">
+                    <img src="img/avatar/1.png" class="img-opt" alt="Avatar 1">
+                </label>
+                <label class="avatar-option">
+                    <input id="avatar" type="radio" name="avatar" value="2">
+                    <img src="img/avatar/2.png" class="img-opt" alt="Avatar 2">
+                </label>
+                <label class="avatar-option">
+                    <input id="avatar" type="radio" name="avatar" value="3">
+                    <img src="img/avatar/3.png" class="img-opt" alt="Avatar 3">
+                </label>
+            </div>
+            <input type="button" value="Change" id="btn-avatar" style="display: none">
+        </div>
     
         <div class="recent-games">
             <h3 id="titulo-last5">Last 5 Games</h4>
@@ -48,6 +67,7 @@
                 </tbody>
             </table>
         </div>
+
     </div>
     
     <footer class="footer">
@@ -58,6 +78,7 @@
     <script src="/js/libs/jquery-3.7.1.min.js"></script>
     <script src="/js/navbars/navbarPerfil.js"></script>
     <script src="/js/loaders/cargarPerfil.js"></script>
+    <script src="/js/cargarAvatarCambio.js"></script>
     <script async src="/js/navbars/navbarMovil.js"></script>
 </body>
 </html>

@@ -7,9 +7,18 @@ const multer = require('multer');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const upload = multer();
 const app = express();
 const ruta = "http://localhost:8080";
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, 'html/uploads/'); // Directorio donde se guardarán los archivos subidos
+  },
+  filename: function(req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname); // Nombre de archivo único
+  }
+});
+const upload = multer({ storage: storage });
 
 /* const ruta = "http://redundancia0.duckdns.org:8080"; */
 
@@ -275,56 +284,58 @@ app.post('/topUsuarios', (req, res) => {
 
 
 app.post('/register', (req, res) => {
-  const { username, email, password, confirm_password } = req.body;
+  const { username, email, password, confirm_password, avatar } = req.body;
 
   const userData = {
       nombre: username,
       clave: password,
       correo: email,
       monedas: 0,
-      avatar: '-',
+      avatar: avatar, // Utiliza avatarValue en lugar de avatar
       rango: 0,
       puntuacion: 0
   };
 
   axios.post(`${ruta}/api/usuarios`, userData)
-          .then(response => {
-              console.log('Respuesta del servidor:', response.data);
-              res.status(200).json({
-                  message: "User registered successfully",
+      .then(response => {
+          console.log('Respuesta del servidor:', response.data);
+          res.status(200).json({
+              message: "User registered successfully",
+              username: username,
+              email: email,
+              avatar: avatar // Devuelve el valor del avatar seleccionado
+          });
+      })
+      .catch(error => {
+          if (error.response) {
+              console.error('Error en la petición POST:', error.response.data);
+              res.status(error.response.status).json({
+                  message: `${error.response.data.message}`,
                   username: username,
                   email: email,
-                  avatar: "No avatar uploaded"
+                  avatar: avatar // Devuelve el valor del avatar seleccionado
               });
-          })
-          .catch(error => {
-              if (error.response) {
-                  console.error('Error en la petición POST:', error.response.data);
-                  res.status(error.response.status).json({
-                      message: `${error.response.data.message}`,
-                      username: username,
-                      email: email,
-                      avatar: "No avatar uploaded"
-                  });
-              } else if (error.request) {
-                  console.error('No se recibió respuesta del servidor:', error.request);
-                  res.status(500).json({
-                      message: "No se pudo completar la solicitud",
-                      username: username,
-                      email: email,
-                      avatar: "No avatar uploaded"
-                  });
-              } else {
-                  console.error('Error inesperado:', error.message);
-                  res.status(500).json({
-                      message: "Error inesperado al procesar la solicitud",
-                      username: username,
-                      email: email,
-                      avatar: "No avatar uploaded"
-                  });
-              }
-          });
+          } else if (error.request) {
+              console.error('No se recibió respuesta del servidor:', error.request);
+              res.status(500).json({
+                  message: "No se pudo completar la solicitud",
+                  username: username,
+                  email: email,
+                  avatar: avatar // Devuelve el valor del avatar seleccionado
+              });
+          } else {
+              console.error('Error inesperado:', error.message);
+              res.status(500).json({
+                  message: "Error inesperado al procesar la solicitud",
+                  username: username,
+                  email: email,
+                  avatar: avatar // Devuelve el valor del avatar seleccionado
+              });
+          }
+      });
 });
+
+
 
 app.post('/removeUser', (req, res) => {
   const { idUsuario } = req.body;

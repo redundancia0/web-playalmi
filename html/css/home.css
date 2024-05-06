@@ -6,6 +6,7 @@
 
 .home-container p, .home-container h2, .home-container h3 {
     color: white;
+    text-align: justify;
 }
 
 .center-container {
