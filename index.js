@@ -94,31 +94,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-/* app.post('/datosUsuario', (req, res) => {
-  const url = `${ruta}/api/usuarios/findbyid/${}`;
-  const data = {
-    nombre: usuario,
-    clave: clave
-  };
-
-  axios.post(url, data)
-    .then(response => {
-      console.log('Respuesta del servidor:', response.data);
-      if (response.data.message === 'Inicio de sesión exitoso') {
-        req.session.user = usuario;
-        res.redirect('/');
-      } else {
-        res.redirect("/login");
-      }
-    })
-    .catch(error => {
-      console.error('Error al hacer la solicitud:', error);
-      res.redirect("/login");
-    });
-
-
-}) */
-
 function navAdminLi(req){
   console.log(req.session.rank)
   if (req.session.rank == 1){
@@ -139,6 +114,20 @@ function navAdminLiActive(req){
 
 app.post('/userList', checkSessionAdmin, (req, res) => {
   axios.get(`${ruta}/api/usuarios/`)
+  .then(response => {
+      console.log('Respuesta del servidor:', response.data);
+      res.status(200).json(response.data);
+  })
+  .catch(error => {
+      console.error('Error al hacer la petición POST:', error);
+      res.status(500).json({
+          message: "Error while fetching user information"
+      });
+  });
+})
+
+app.get('/obtenerPartidas5', checkSession, (req, res) => {
+  axios.get(`${ruta}/api/partidas/findbyid/${req.session.id_user}`)
   .then(response => {
       console.log('Respuesta del servidor:', response.data);
       res.status(200).json(response.data);

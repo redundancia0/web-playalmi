@@ -3,23 +3,26 @@
 }
 
 #h3-perfil {
-    margin-top: 110px;
+    margin-top: 40px;
     text-align: center;
     font-size: 40px;
 }
 
 .profile-section p {
     font-size: 18px;
-
 }
-.profile-section {
-    margin-top: 100px;
 
+.profile-section {
+    margin-top: 50px;
 }
 
 .leaderboard-container {
     color: white;
-    margin-bottom: 248px;
+    margin-bottom: 148px;
+}
+
+.recent-games {
+    margin-top: 40px;
 }
 
 @media (max-width: 431px) {
@@ -30,4 +33,34 @@
     .footer {
         margin-top: 44px;
     }
+}
+
+#titulo-last5 {
+    font-size: 24px;
+}
+
+#recent-games-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#recent-games-table th,
+#recent-games-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+#recent-games-table th {
+    background-color: #061423;
+    color: white;
+}
+
+#recent-games-table tbody tr:nth-child(even) {
+    background-color: #061423;
+}
+
+#recent-games-table tbody tr:hover {
+    background-color: #061423;
 }
