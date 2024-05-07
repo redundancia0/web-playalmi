@@ -70,7 +70,7 @@ $(document).ready(function() {
   function displayUserTable(users) {
     var tableHtml = '<table class="table"><thead><tr><th>Name</th><th>Coins</th><th>Score</th><th>Rank</th><th>Action</th></tr></thead><tbody>';
     users.forEach(function(user) {
-      tableHtml += '<tr><td>' + user.nombre + '</td><td>' + user.monedas + '</td><td>' + user.puntuacion + '</td><td>' + parsearRango(user.rango) + '</td><td><button class="btn btn-primary btn-edit" data-id="' + user._id + '">Edit</button> <button class="btn btn-danger btn-remove" data-id="' + user._id + '">Remove</button></td></tr>';
+      tableHtml += '<tr><td>' + user.nombre + '</td><td>' + user.estadisticas.monedas + '</td><td>' + user.estadisticas.puntuacion + '</td><td>' + parsearRango(user.rango) + '</td><td><button class="btn btn-primary btn-edit" data-id="' + user._id + '">Edit</button> <button class="btn btn-danger btn-remove" data-id="' + user._id + '">Remove</button></td></tr>';
     });
     tableHtml += '</tbody></table>';
     $('.users-table').html(tableHtml);
@@ -115,7 +115,7 @@ $(document).ready(function() {
   function showEditModal(userId, users) {
     var userData = getUserData(userId, users);
     if (userData) {
-      $('#edit-user-modal .modal-body').html('<h2 id="modal-h2">Edit User</h2><label for="username">Username:</label><br><input type="text" id="username" name="username" value="' + userData.nombre + '" disabled data-id="' + userId + '"><br><label for="coins">Coins:</label><br><input type="text" id="coins" name="coins" value="' + userData.monedas + '"><br><label for="score">Score:</label><br><input type="text" id="score" name="score" value="' + userData.puntuacion + '"><br>                <button type="button" id="save-changes-btn" class="btn-save">Save changes</button><button type="button" id="cancel-changes-btn" class="btn-cancel">Cancel</button>');
+      $('#edit-user-modal .modal-body').html('<h2 id="modal-h2">Edit User</h2><label for="username">Username:</label><br><input type="text" id="username" name="username" value="' + userData.nombre + '" disabled data-id="' + userId + '"><br><label for="coins">Coins:</label><br><input type="text" id="coins" name="coins" value="' + userData.estadisticas.monedas + '"><br><label for="score">Score:</label><br><input type="text" id="score" name="score" value="' + userData.estadisticas.puntuacion + '"><br>                <button type="button" id="save-changes-btn" class="btn-save">Save changes</button><button type="button" id="cancel-changes-btn" class="btn-cancel">Cancel</button>');
       $('#edit-user-modal').modal('show');
     } else {
       console.error("User data not found for user with id: " + userId);

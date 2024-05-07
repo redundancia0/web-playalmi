@@ -8,7 +8,12 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const app = express();
-const ruta = "http://localhost:8080";
+
+/* const rutaDir = "redundancia0.duckdns.org"; */
+const rutaDir = "localhost";
+
+const ruta = `http://${rutaDir}:8080`; // RUTA DE LA API
+const rutaWeb = `http://${rutaDir}`; // RUTA DE LA WEB
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -20,7 +25,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-/* const ruta = "http://redundancia0.duckdns.org:8080"; */
 
 /* const privateKey = fs.readFileSync('/etc/letsencrypt/live/redundancia0.duckdns.org/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/redundancia0.duckdns.org/cert.pem', 'utf8');
@@ -286,12 +290,22 @@ app.post('/topUsuarios', (req, res) => {
 app.post('/register', (req, res) => {
   const { username, email, password, confirm_password, avatar } = req.body;
 
+  let avatarRuta;
+
+  if (avatar == 1){
+    avatarRuta = `${rutaWeb}/img/avatar/1.png`;
+  } else if (avatar == 2){
+    avatarRuta = `${rutaWeb}/img/avatar/2.png`;
+  } else if (avatar == 3){
+    avatarRuta = `${rutaWeb}/img/avatar/3.png`;
+  }
+
   const userData = {
       nombre: username,
       clave: password,
       correo: email,
       monedas: 0,
-      avatar: avatar,
+      avatar: avatarRuta,
       rango: 0,
       puntuacion: 0
   };
@@ -434,11 +448,11 @@ app.post('/updateUserAvatar', (req, res) => {
   let avatarRuta;
 
   if (avatar == 1){
-    avatarRuta = `${ruta}/img/avatar/1.png`;
+    avatarRuta = `${rutaWeb}/img/avatar/1.png`;
   } else if (avatar == 2){
-    avatarRuta = `${ruta}/img/avatar/2.png`;
+    avatarRuta = `${rutaWeb}/img/avatar/2.png`;
   } else if (avatar == 3){
-    avatarRuta = `${ruta}/img/avatar/3.png`;
+    avatarRuta = `${rutaWeb}/img/avatar/3.png`;
   }
 
   const userData = {

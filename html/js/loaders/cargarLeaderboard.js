@@ -7,7 +7,7 @@ $(document).ready(function() {
           $('#leaderboardList').empty();
           response.data.forEach(function(usuario, index) {
               var listItem = $('<li>').addClass('leaderboard-item');
-              var avatarImg = $('<img>').attr('src', 'https://img.freepik.com/fotos-premium/fondo-fondos-pantalla-bonitos_997657-195.jpg').attr('alt', 'Avatar').addClass('avatar');
+              var avatarImg = $('<img>').attr('src', usuario.avatar).attr('alt', 'Avatar').addClass('avatar');
               var playerNameSpan = $('<span>').addClass('player-name').text(usuario.nombre);
               var scoreSpan = $('<span>').addClass('score').text(usuario.puntuacion);
 

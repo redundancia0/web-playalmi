@@ -12,6 +12,7 @@ $(document).ready(function() {
             type: 'POST',
             data: { avatar: avatarSeleccionado, idUsuario: userID},
             success: function(response) {
+                $('#change-msg').text(`Your avatar has changed successfully to ${parsearAvatar(avatarSeleccionado)}!`).css('color', 'green');
                 console.log(response)
             },
             error: function(xhr, status, error) {
@@ -19,4 +20,14 @@ $(document).ready(function() {
             }
           });
     });
+
+    function parsearAvatar(avatarID){
+        if (avatarID == 1){
+            return 'bird';
+        } else if (avatarID == 2){
+            return 'tank';
+        } else if (avatarID == 3){
+            return 'armor'
+        }
+    }
 });

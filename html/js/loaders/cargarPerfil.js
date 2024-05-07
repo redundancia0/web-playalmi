@@ -12,6 +12,7 @@ $(document).ready(function() {
             $('#profile-score').text(response.data.puntuacion);
             $('#profile-coins').text(response.data.monedas);
             $('#profile-created').text(parsearFecha(response.data.fecha_registro));
+            $('#profile-logIn').text(parsearFecha(response.data.fecha_inicioSesion));
 
         },
         error: function(xhr, status, error) {
