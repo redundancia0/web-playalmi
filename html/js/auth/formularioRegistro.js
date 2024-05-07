@@ -59,7 +59,7 @@ $(document).ready(function() {
             data: JSON.stringify(userData),
             contentType: 'application/json',
             success: function(response) {
-                if (response.message === "User registered successfully") {
+                if (response.message === "Nuevo usuario creado") {
                     window.location.replace('/login');
                 }
             },
