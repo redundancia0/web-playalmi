@@ -116,3 +116,45 @@
 .footer {
     margin-top:50px;
 }
+
+.about {
+    text-align: center;
+    padding: 50px 0;
+}
+.about .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.about .feature {
+    margin-bottom: 40px;
+}
+.about .feature img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.home-container h2{
+    text-align: center;
+}
+
+.home-container h3{
+    text-align: center;
+}
+
+.features iframe {
+    display: block;
+    margin: 0 auto;
+}
+
+.features img {
+    display: block;
+    margin: 0 auto;
+}
+
+
+.features p {
+    text-align: center;
+}

@@ -8,3 +8,7 @@
         margin-top: 320px;
     }
 }
+
+body {
+    background-image: url('/img/fondo.png')!important;
+}

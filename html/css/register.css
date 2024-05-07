@@ -7,3 +7,7 @@
     width: 68px;
     margin-right: 30px;
 }
+
+body {
+    background-image: url('/img/fondo.png')!important;
+}
