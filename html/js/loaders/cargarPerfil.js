@@ -9,8 +9,8 @@ $(document).ready(function() {
             $('#profile-name').text(response.data.nombre);
             $('#profile-email').text(response.data.correo);
             $('#profile-rank').text(parsearRango(response.data.rango));
-            $('#profile-score').text(response.data.puntuacion);
-            $('#profile-coins').text(response.data.monedas);
+            $('#profile-score').text(response.data.estadisticas.puntuacion);
+            $('#profile-coins').text(response.data.estadisticas.monedas);
             $('#profile-created').text(parsearFecha(response.data.fecha_registro));
             $('#profile-logIn').text(parsearFecha(response.data.fecha_inicioSesion));
 

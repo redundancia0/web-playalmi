@@ -70,7 +70,7 @@ $(document).ready(function() {
   function displayUserTable(users) {
     var tableHtml = '<table class="table"><thead><tr><th>Name</th><th>Coins</th><th>Score</th><th>Rank</th><th>Action</th></tr></thead><tbody>';
     users.forEach(function(user) {
-      tableHtml += '<tr><td>' + user.nombre + '</td><td>' + user.estadisticas.monedas + '</td><td>' + user.estadisticas.puntuacion + '</td><td>' + parsearRango(user.rango) + '</td><td><button class="btn btn-primary btn-edit" data-id="' + user._id + '">Edit</button> <button class="btn btn-danger btn-remove" data-id="' + user._id + '">Remove</button></td></tr>';
+      tableHtml += '<tr><td>' + user.nombre + '</td><td>' + user.estadisticas.monedas + '</td><td>' + user.estadisticas.puntuacion + '</td><td>' + parsearRango(user.rango) + '</td><td><button class="btn btn-primary btn-edit" data-id="' + user._id + '"><i class="bi bi-pencil-square"></i></button> <button class="btn btn-danger btn-remove" data-id="' + user._id + '"><i class="bi bi-trash3-fill"></i></button></td></tr>';
     });
     tableHtml += '</tbody></table>';
     $('.users-table').html(tableHtml);
