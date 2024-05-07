@@ -7,6 +7,7 @@ const multer = require('multer');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const cors = require('cors');
 const app = express();
 
 /* const rutaDir = "redundancia0.duckdns.org"; */
@@ -23,6 +24,8 @@ const storage = multer.diskStorage({
       cb(null, Date.now() + '-' + file.originalname); // Nombre de archivo único
   }
 });
+
+
 const upload = multer({ storage: storage });
 
 
@@ -287,7 +290,7 @@ app.post('/topUsuarios', (req, res) => {
 })
 
 
-app.post('/register', (req, res) => {
+/* app.post('/register', (req, res) => {
   const { username, email, password, confirm_password, avatar } = req.body;
 
   let avatarRuta;
@@ -347,9 +350,7 @@ app.post('/register', (req, res) => {
               });
           }
       });
-});
-
-
+}); */
 
 app.post('/removeUser', (req, res) => {
   const { idUsuario } = req.body;
@@ -505,6 +506,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, 'html')));
+app.use(cors());
 
 const PORT = process.env.PORT || 80;
 

@@ -1,7 +1,7 @@
-.container-registro {
+/* .container-registro {
     margin-bottom: 241px!important;
 }
-
+ */
 .img-opt {
     height: 61px;
     width: 68px;
@@ -10,4 +10,18 @@
 
 body {
     background-image: url('/img/fondo.png')!important;
+}
+
+@media (max-width: 500px){
+    .footer{
+        bottom: 0;
+    }
+
+    .container-registro {
+        width: 89%
+    }
+    
+    .h2-registro {
+        font-size: 25px;
+    }
 }

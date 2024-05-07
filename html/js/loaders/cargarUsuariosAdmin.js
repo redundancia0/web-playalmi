@@ -1,7 +1,9 @@
 $(document).ready(function() {
+  let url = "http://localhost:8080/api"
+
   $.ajax({
-    url: '/userList',
-    type: 'POST',
+    url: `${url}/usuarios`,
+    type: 'GET',
     success: function(response) {
       console.log(response)
       handleUserListResponse(response);
@@ -24,11 +26,11 @@ $(document).ready(function() {
       idUsuario: userId
     };
 
-    console.log(updatedUserData)
+    console.log(updatedUserData);
 
     $.ajax({
-      url: '/updateUser',
-      type: 'POST',
+      url: `${url}/usuarios/findbyid/${userId}`,
+      type: 'POST', // Cambiado a 'PUT' para actualizar los datos del usuario
       data: updatedUserData,
       success: function(response) {
         console.log('User data updated successfully:', response);
@@ -61,7 +63,7 @@ $(document).ready(function() {
       console.log("Data loaded");
       displayUserTable(response.data);
       attachEditButtonListeners(response.data);
-      attachRemoveButtonListeners();
+      attachRemoveButtonListeners(response.data);
     } else {
       console.log("Invalid response");
     }
@@ -84,12 +86,13 @@ $(document).ready(function() {
     });
   }
 
-  function attachRemoveButtonListeners() {
+  function attachRemoveButtonListeners(users) {
     $('.btn-remove').click(function() {
       var userId = $(this).data('id');
       console.log("Remove user button clicked for user with id: " + userId);
+      showRemoveModal(userId, users)
       
-      $.ajax({
+/*       $.ajax({
         url: '/removeUser',
         type: 'POST',
         data: { idUsuario: userId },
@@ -100,7 +103,7 @@ $(document).ready(function() {
         error: function(xhr, status, error) {
           console.error('Error removing user data:', error);
         }
-      });
+      }); */
     });
   }
 
@@ -112,11 +115,97 @@ $(document).ready(function() {
     }
   }
 
+  function updateUser(userId, updatedUserData) {
+    $.ajax({
+      url: `${url}/usuarios/findbyid/${userId}`,
+      type: 'PUT',
+      data: updatedUserData,
+      success: function(response) {
+        console.log('User data updated successfully:', response);
+        $('#edit-user-modal').modal('hide');
+        reloadUserList();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error updating user data:', error);
+      }
+    });
+  }
+
   function showEditModal(userId, users) {
     var userData = getUserData(userId, users);
     if (userData) {
-      $('#edit-user-modal .modal-body').html('<h2 id="modal-h2">Edit User</h2><label for="username">Username:</label><br><input type="text" id="username" name="username" value="' + userData.nombre + '" disabled data-id="' + userId + '"><br><label for="coins">Coins:</label><br><input type="text" id="coins" name="coins" value="' + userData.estadisticas.monedas + '"><br><label for="score">Score:</label><br><input type="text" id="score" name="score" value="' + userData.estadisticas.puntuacion + '"><br>                <button type="button" id="save-changes-btn" class="btn-save">Save changes</button><button type="button" id="cancel-changes-btn" class="btn-cancel">Cancel</button>');
+      $('#edit-user-modal .modal-body').html(`
+        <h2 id="modal-h2">Edit User</h2>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="${userData.nombre}" disabled data-id="${userId}"><br>
+        <label for="coins">Coins:</label><br>
+        <input type="text" id="coins" name="coins" value="${userData.estadisticas.monedas}"><br>
+        <label for="score">Score:</label><br>
+        <input type="text" id="score" name="score" value="${userData.estadisticas.puntuacion}"><br>
+        <button type="button" id="save-changes-btn-modal" class="btn btn-save">Save changes</button>
+        <button type="button" id="cancel-changes-btn-modal" class="btn btn-cancel">Cancel</button>
+      `);
       $('#edit-user-modal').modal('show');
+
+      // Manejar clic en el botón 'Save changes' del modal de edición
+      $('#save-changes-btn-modal').click(function() {
+        var userId = $('#username').data('id');
+        var updatedUserData = {
+          monedas: $('#coins').val(),
+          puntuacion: $('#score').val(),
+          idUsuario: userId
+        };
+
+        console.log("Save changes button clicked for user with id: " + userId);
+        console.log("Updated user data:", updatedUserData);
+
+        // Aquí puedes llamar a tu función de actualización de datos
+        updateUser(userId, updatedUserData);
+      });
+
+      // Manejar clic en el botón 'Cancel' del modal de edición
+      $('#cancel-changes-btn-modal').click(function() {
+        console.log("Cancel changes button clicked");
+        $('#edit-user-modal').modal('hide');
+      });
+    } else {
+      console.error("User data not found for user with id: " + userId);
+    }
+  }
+
+  function attachRemoveButtonListeners(users) {
+    $('.btn-remove').click(function() {
+      var userId = $(this).data('id');
+      console.log("Remove user button clicked for user with id: " + userId);
+      showRemoveModal(userId, users);
+    });
+  }
+
+  function showRemoveModal(userId, users) {
+    var userData = getUserData(userId, users);
+    if (userData) {
+      $('#eliminar-modal .modal-body').html('<h2 id="modal-h2">Do you want to remove user: ' + userData.nombre + '?</h2><button type="button" id="btn-yes" class="btn btn-danger">Yes</button><button type="button" id="btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>');
+      $('#eliminar-modal').modal('show');
+
+      $('#btn-yes').click(function() {
+        console.log("User removal confirmed for user with id: " + userId);
+
+         $.ajax({
+           url: `${url}/usuarios/findbyid/${userId}`,
+           type: 'DELETE',
+  /*          data: { idUsuario: userId }, */
+           success: function(response) {
+             console.log('User data removed successfully:', response);
+             reloadUserList();
+           },
+           error: function(xhr, status, error) {
+             console.error('Error removing user data:', error);
+           }
+        });
+
+        // Ocultar el modal después de eliminar
+        $('#eliminar-modal').modal('hide');
+      });
     } else {
       console.error("User data not found for user with id: " + userId);
     }

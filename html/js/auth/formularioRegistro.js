@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    let url = "http://localhost:8080/api";
+
     var btnRegister = $('#btn-register');
     var passwordMessage = $('#password-p');
     var avatarInputs = $('input[name="avatar"]');
@@ -31,20 +33,31 @@ $(document).ready(function() {
         }
     }
 
-    // Event listeners for input fields and avatar checkboxes
     $('#username, #email, #password, #confirm_password').on('input', checkFields);
     avatarInputs.on('change', checkFields);
 
-    // Form submission handler
     $('form').submit(function(event) {
         event.preventDefault();
-        var formData = new FormData(this);
+
+        var username = $('#username').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        var avatar = $('input[name="avatar"]:checked').val();
+
+        var hashedPassword = CryptoJS.SHA256(password).toString();
+
+        var userData = {
+            nombre: username,
+            correo: email,
+            clave: hashedPassword,
+            avatar: avatar
+        };
+
         $.ajax({
             type: 'POST',
-            url: '/register',
-            data: formData,
-            contentType: false,
-            processData: false,
+            url: `${url}/usuarios`,
+            data: JSON.stringify(userData),
+            contentType: 'application/json',
             success: function(response) {
                 if (response.message === "User registered successfully") {
                     window.location.replace('/login');

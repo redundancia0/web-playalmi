@@ -21,34 +21,45 @@
         </div>
     </nav>
 
-    <div class="container leaderboard-container">
+    <div class="container2 leaderboard-container">
         <h3 id="h3-perfil">Your Profile</h3>
-        <div class="profile-section">
-            <h4 id="subtitulo-perfil">Your personal data</h4>
-            <p id="p-nombre"><i class="bi bi-card-text"></i> Name: <span id="profile-name"></span></p>
-            <p id="p-correo"><i class="bi bi-envelope"></i> Email Address: <span id="profile-email"></span> </p>
-            <p id="p-rank"><i class="bi bi-lightning-charge"></i> Rank: <span id="profile-rank"></span> </p>
-            <p id="p-score"><i class="bi bi-bookmark"></i> Score: <span id="profile-score"></span> </p>
-            <p id="p-coins"><i class="bi bi-coin"></i> Coins: <span id="profile-coins"></span> </p>
-            <p id="p-created"><i class="bi bi-calendar-event"></i> Created: <span id="profile-created"></span> </p>
-            <p id="p-logIn"><i class="bi bi-door-open"></i> Last Login: <span id="profile-logIn"></span> </p>
-            <span style="display: none;" id="profile-idUser"></span>
+        <h4 id="subtitulo-perfil">Your personal data</h4>
+
+        <div class="contenido-secciones">
+            <div class="column-left">
+                <div class="profile-section">
+                    <p id="p-nombre"><i class="bi bi-card-text"></i> Name: <span id="profile-name"></span></p>
+                    <p id="p-correo"><i class="bi bi-envelope"></i> Email Address: <span id="profile-email"></span> </p>
+                    <p id="p-rank"><i class="bi bi-lightning-charge"></i> Rank: <span id="profile-rank"></span> </p>
+                    <p id="p-score"><i class="bi bi-bookmark"></i> Score: <span id="profile-score"></span> </p>
+                    <p id="p-coins"><i class="bi bi-coin"></i> Coins: <span id="profile-coins"></span> </p>
+                    <p id="p-created"><i class="bi bi-calendar-event"></i> Created: <span id="profile-created"></span> </p>
+                    <p id="p-logIn"><i class="bi bi-door-open"></i> Last Login: <span id="profile-logIn"></span> </p>
+                    <span style="display: none;" id="profile-idUser"></span>
+                </div>
+            </div>
+            <div class="column-right">
+                <!-- Contenido de la columna derecha -->
+                <div class="img-gift">
+                    <img src="https://cdn.discordapp.com/attachments/1237449422724661380/1237468581185192008/2024-05-07_19-15-13_online-video-cutter.com_2.gif?ex=663bc1ec&is=663a706c&hm=c7016c46da7061ec25a6557700f18169be0f59f11549785570197206d730d47b&" alt="" srcset="" id="juego-gift">
+                </div>
+            </div>
         </div>
 
         <div class="change-avatar">
-            <h3 id="titulo-last5">Change avatar</h4>
+            <h2 id="titulo-last5">Change avatar</h2>
             <div class="avatar-options">
                 <label class="avatar-option">
                     <input id="avatar" type="radio" name="avatar" value="1">
-                    <img src="img/avatar/1.png" class="img-opt" alt="Avatar 1">
+                    <img src="img/avatar/1.png" class="img-opt" alt="Avatar 1" name="1">
                 </label>
                 <label class="avatar-option">
                     <input id="avatar" type="radio" name="avatar" value="2">
-                    <img src="img/avatar/2.png" class="img-opt" alt="Avatar 2">
+                    <img src="img/avatar/2.png" class="img-opt" alt="Avatar 2" name="2">
                 </label>
                 <label class="avatar-option">
                     <input id="avatar" type="radio" name="avatar" value="3">
-                    <img src="img/avatar/3.png" class="img-opt" alt="Avatar 3">
+                    <img src="img/avatar/3.png" class="img-opt" alt="Avatar 3" name="3">
                 </label>
             </div>
             <input type="button" value="Change" id="btn-avatar" style="display: none">
@@ -56,7 +67,7 @@
         </div>
     
         <div class="recent-games">
-            <h3 id="titulo-last5">Last 5 Games</h4>
+            <h2 id="titulo-last5">Last 5 Games</h2>
             <table id="recent-games-table">
                 <thead>
                     <tr>

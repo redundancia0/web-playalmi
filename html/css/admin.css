@@ -1,3 +1,7 @@
+body {
+  min-height: 100vh!important;
+}
+
 .user-table {
     color: white;
     width: 80%;

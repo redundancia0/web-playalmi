@@ -2,6 +2,10 @@
     margin-top: 100px!important;
 } */
 
+body {
+    min-height: 100vh!important;
+}
+
 .h3-leaderboard {
     text-align: center;
     color: white;
@@ -98,3 +102,5 @@
     padding: 8px 15px;
     border-radius: 5px;
 }
+
+
