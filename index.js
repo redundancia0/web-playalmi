@@ -358,6 +358,7 @@ app.listen(PORT, () => {
 });
 
 
+// CUANDO ESTÉ EN PRODUCCIÓN, PARA EL SSL
 /* httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
@@ -365,4 +366,4 @@ app.listen(PORT, () => {
 httpsServer.listen(443, () => {
 	console.log('HTTPS Server running on port 443');
 });
-ss */
+*/
