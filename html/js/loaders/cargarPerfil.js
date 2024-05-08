@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     $.ajax({
         url: '/perfil',
@@ -13,6 +14,10 @@ $(document).ready(function() {
             $('#profile-coins').text(response.data.estadisticas.monedas);
             $('#profile-created').text(parsearFecha(response.data.fecha_registro));
             $('#profile-logIn').text(parsearFecha(response.data.fecha_inicioSesion));
+            $('#img-preselect').val(response.data.avatar);
+            
+            // Llama a la función preselectAvatar con el valor del avatar obtenido
+            preselectAvatar(response.data.avatar);
 
         },
         error: function(xhr, status, error) {
@@ -20,8 +25,31 @@ $(document).ready(function() {
         }
     });
 
+
+    $('input[name="avatar"]').change(function() {
+        console.log('detecta evento')
+        // Elimina la clase 'selected' del avatar preseleccionado anteriormente
+        $('.img-opt.selected').removeClass('selected');
+    });
+
+
     obtenerPartidas();
 });
+
+function preselectAvatar(img) {
+    // Desactiva la clase de estilo seleccionado de todos los elementos de radio
+    $('input[name="avatar"]').removeClass('selected');
+
+    if (img == "http://localhost/img/avatar/1.png") {
+        $('#avatar1').prop('checked', true).addClass('selected');
+    } else if (img == "http://localhost/img/avatar/2.png") {
+        $('#avatar2').prop('checked', true).addClass('selected');
+    } else if (img == "http://localhost/img/avatar/3.png") {
+        $('#avatar3').prop('checked', true).addClass('selected');
+    }
+}
+
+
 
 function parsearFecha(fecha) {
     fechaRegistro = new Date(fecha);

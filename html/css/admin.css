@@ -59,6 +59,49 @@ body {
     transition: background-color 0.3s ease;
 }
 
+#btn-no {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: #d50000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botones-borrar {
+  display: flex;
+  justify-content: center;
+}
+
+.botones-borrar button {
+  margin: 0 5px;
+}
+
+
+#btn-yes {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-right: 10px;
+  font-weight: 300;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: #005c08;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .modal {
   display: none;
   position: fixed;

@@ -184,7 +184,7 @@ $(document).ready(function() {
   function showRemoveModal(userId, users) {
     var userData = getUserData(userId, users);
     if (userData) {
-      $('#eliminar-modal .modal-body').html('<h2 id="modal-h2">Do you want to remove user: ' + userData.nombre + '?</h2><button type="button" id="btn-yes" class="btn btn-danger">Yes</button><button type="button" id="btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>');
+      $('#eliminar-modal .modal-body').html('<h2 id="modal-h2">Do you want to remove user: ' + userData.nombre + '?</h2><div class="botones-borrar"><button type="button" id="btn-yes" class="btn btn-danger">Yes</button><button type="button" id="btn-no" class="btn btn-secondary" data-dismiss="modal">No</button></div>');
       $('#eliminar-modal').modal('show');
 
       $('#btn-yes').click(function() {
