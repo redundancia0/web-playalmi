@@ -28,6 +28,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// CLAVES PARA EL CERTIFICADO SSL (HTTPS) DEL CERTBOT
 
 /* const privateKey = fs.readFileSync('/etc/letsencrypt/live/redundancia0.duckdns.org/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/redundancia0.duckdns.org/cert.pem', 'utf8');
@@ -39,6 +40,7 @@ const ca = fs.readFileSync('/etc/letsencrypt/live/redundancia0.duckdns.org/chain
 	ca: ca
 }; */
 
+// GESTOR DE SESIONES
 app.use(session({
   secret: 'playAlmiRedundancia0!?!?!?',
   resave: false,
@@ -56,6 +58,7 @@ app.use(upload.single('avatar'));
 const httpsServer = https.createServer(credentials, app);
  */
 
+// COMPROBAR SESIÓN DE USUARIO
 const checkSession = (req, res, next) => {
   if (!req.session.user) {
     return res.redirect('/login');
@@ -63,6 +66,7 @@ const checkSession = (req, res, next) => {
   next();
 };
 
+// COMPROBAR SESIÓN DE ADMIN
 const checkSessionAdmin = (req, res, next) => {
   if (!req.session.user || req.session.rank != 1) {
     return res.redirect('/login');
@@ -128,20 +132,6 @@ function navAdminLiActive(req){
   }
 }
 
-app.post('/userList', checkSessionAdmin, (req, res) => {
-  axios.get(`${ruta}/api/usuarios/`)
-  .then(response => {
-      console.log('Respuesta del servidor:', response.data);
-      res.status(200).json(response.data);
-  })
-  .catch(error => {
-      console.error('Error al hacer la petición POST:', error);
-      res.status(500).json({
-          message: "Error while fetching user information"
-      });
-  });
-})
-
 app.get('/obtenerPartidas5', checkSession, (req, res) => {
   axios.get(`${ruta}/api/partidas/findbyid/${req.session.id_user}`)
   .then(response => {
@@ -156,6 +146,7 @@ app.get('/obtenerPartidas5', checkSession, (req, res) => {
   });
 })
 
+// GESTIÓN DEL NAVBAR
 app.post('/navbar', (req, res) => {
   if (req.session.user && req.body.pagina == 'home'){
     res.send(`<div class="container">
@@ -288,154 +279,6 @@ app.post('/topUsuarios', (req, res) => {
           });
       });
 })
-
-
-/* app.post('/register', (req, res) => {
-  const { username, email, password, confirm_password, avatar } = req.body;
-
-  let avatarRuta;
-
-  if (avatar == 1){
-    avatarRuta = `${rutaWeb}/img/avatar/1.png`;
-  } else if (avatar == 2){
-    avatarRuta = `${rutaWeb}/img/avatar/2.png`;
-  } else if (avatar == 3){
-    avatarRuta = `${rutaWeb}/img/avatar/3.png`;
-  }
-
-  const userData = {
-      nombre: username,
-      clave: password,
-      correo: email,
-      monedas: 0,
-      avatar: avatarRuta,
-      rango: 0,
-      puntuacion: 0
-  };
-
-  axios.post(`${ruta}/api/usuarios`, userData)
-      .then(response => {
-          console.log('Respuesta del servidor:', response.data);
-          res.status(200).json({
-              message: "User registered successfully",
-              username: username,
-              email: email,
-              avatar: avatar
-          });
-      })
-      .catch(error => {
-          if (error.response) {
-              console.error('Error en la petición POST:', error.response.data);
-              res.status(error.response.status).json({
-                  message: `${error.response.data.message}`,
-                  username: username,
-                  email: email,
-                  avatar: avatar
-              });
-          } else if (error.request) {
-              console.error('No se recibió respuesta del servidor:', error.request);
-              res.status(500).json({
-                  message: "No se pudo completar la solicitud",
-                  username: username,
-                  email: email,
-                  avatar: avatar
-              });
-          } else {
-              console.error('Error inesperado:', error.message);
-              res.status(500).json({
-                  message: "Error inesperado al procesar la solicitud",
-                  username: username,
-                  email: email,
-                  avatar: avatar
-              });
-          }
-      });
-}); */
-
-app.post('/removeUser', (req, res) => {
-  const { idUsuario } = req.body;
-
-  if (!idUsuario) {
-    return res.status(400).json({
-      message: "Missing required fields"
-    });
-  }
-
-  axios.delete(`${ruta}/api/usuarios/findbyid/${idUsuario}`)
-    .then(response => {
-      console.log('Server response:', response.data);
-      res.status(200).json({
-        message: "User data removed successfully",
-        userId: idUsuario,
-      });
-    })
-    .catch(error => {
-      console.error('Error while making DELETE request:', error);
-      if (error.response) {
-        res.status(error.response.status).json({
-          message: "Error removing user data",
-          error: error.response.data,
-          userId: idUsuario,
-        });
-      } else if (error.request) {
-        res.status(500).json({
-          message: "No response received from server",
-          userId: idUsuario,
-        });
-      } else {
-        res.status(500).json({
-          message: "Error setting up request",
-          error: error.message,
-          userId: idUsuario,
-        });
-      }
-    });
-});
-
-app.post('/updateUser', (req, res) => {
-  const { monedas, puntuacion, idUsuario } = req.body;
-
-  if (!monedas || !puntuacion || !idUsuario) {
-    return res.status(400).json({
-      message: "Missing required fields"
-    });
-  }
-
-  const userData = {
-    monedas: monedas,
-    puntuacion: puntuacion
-  };
-
-  axios.put(`${ruta}/api/usuarios/findbyid/${idUsuario}`, userData)
-    .then(response => {
-      console.log('Server response:', response.data);
-      res.status(200).json({
-        message: "User data updated successfully",
-        userId: idUsuario,
-      });
-    })
-    .catch(error => {
-      console.error('Error while making PUT request:', error);
-      if (error.response) {
-        res.status(error.response.status).json({
-          message: "Error updating user data",
-          error: error.response.data,
-          userId: idUsuario,
-        });
-      } else if (error.request) {
-        res.status(500).json({
-          message: "No response received from server",
-          userId: idUsuario,
-        });
-      } else {
-        res.status(500).json({
-          message: "Error setting up request",
-          error: error.message,
-          userId: idUsuario,
-        });
-      }
-    });
-});
 
 app.post('/updateUserAvatar', (req, res) => {
   const { avatar, idUsuario } = req.body;
